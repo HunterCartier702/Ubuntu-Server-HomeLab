@@ -125,6 +125,7 @@ $ smbclient //ubuntu-home-server/documents -U cartier
 
 ## <a name="nfs"></a>Installing NFS
 I know I already have a Samba share, but I still wanted to do this for the practice. 
+
 ```shell
 # On server: 
 $ man exports # documentation
@@ -153,6 +154,7 @@ nfs_share.txt
 
 ## <a name="maria"></a>Installing MariaDB
 I also setup MariaDB although I don't do much with it. It was still fun. 
+
 ```shell
 $ sudo apt install mariadb-server
 #run security script
@@ -179,6 +181,7 @@ $ SELECT * FROM Employees;
 
 ## <a name="apache"></a>Installing Apache2
 This was probably the easiest one and the most fun to setup. It was fun because I know some simple web development and was able to create and host my own website for guests to see when they come over and connect to the wifi.
+
 ```shell
 $ sudo apt install apache2
 $ sudo mv /var/www/html/index.html /var/www/html/index.orig
@@ -192,6 +195,7 @@ $ sudo systemctl reload apache2
 ## <a name="ssd"></a>My Favorite Part. Installing an SSD
 For this I bought a $20 256GB NVMe M.2 PCIe 2280 SSD all for the sole purpose of installing and partitioning the new drive. You gotta learn somehow..
 <p align="center"><img alt="motherboard" src="images/9SSD.jpeg" height="auto" width="600"></p>
+
 ***Creating a GPT partition:***
 
 ```shell
@@ -235,7 +239,9 @@ $ sudo mkfs.ext4 /dev/nvme1n1p1
 ```
 
 <p align="center"><img alt="nvme" src="images/11FdiskDone.png" height="auto" width="600"></p>
+
 ***Adding Drive to /etc/fstab***
+
 Be careful editing this file. Edit this file to add additional volumes to be mounted at boot time. However, this file also mounts your main file system, so one mistake and you're not booting. 
 
 ```shell
