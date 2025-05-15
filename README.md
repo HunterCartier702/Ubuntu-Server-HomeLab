@@ -9,10 +9,11 @@
   - [Installing MariaDB](#maria)
   - [Installing Apache2](#apache)
   - [My Favorite Part. Installing an SSD](#ssd)
+  - [Virtualization KVM & QEMU](#virtual)
   - [Summary](#summary)
 
 ## <a name="intro"></a>Intro: The Home-Labtop
-I turned my old gaming laptop into an Ubuntu server for practice. I've been using Linux for a over a year now starting back with VM's in Virtual Box. I eventually upgraded to downloading an ISO with a USB stick and putting Linux Mint on both my laptops and dual booting my desktop. Then I took my stab at Linux+ and passed. Now while I don't care much for the certification I did learn a lot more about Linux in the process of studying for it. I then bought book about Ubuntu server and learned even more to add to my previous studying. And that is what brought me here. Finally testing some of what I had learned. I don't have fancy hardware for this home lab.. yet. I used this as more of a test. This setup I have is very temporary while I look into a more long-term solution as I continue to learn and figure out what I am after. So far I setup Samba, NFS, MariaDB, and Apache2 with my own web page that I made for guests to visit when connected to our WiFi. I then installed a new SSD and partitioned it with the fdisk utility. I had a lot of fun with this and plan on doing more in the future. 
+I turned my old gaming laptop into an Ubuntu server for practice. I've been using Linux for a over a year now starting back with VM's in Virtual Box. I eventually upgraded to downloading an ISO with a USB stick and putting Linux Mint on both my laptops and dual booting my desktop. Then I took my stab at Linux+ and passed. Now while I don't care much for the certification I did learn a lot more about Linux in the process of studying for it. I then bought book about Ubuntu server and learned even more to add to my previous studying. And that is what brought me here. Finally testing some of what I had learned. I don't have fancy hardware for this home lab.. yet. I used this as more of a test. This setup I have is very temporary while I look into a more long-term solution as I continue to learn and figure out what I am after. So far I setup Samba, NFS, MariaDB, and Apache2 with my own web page that I made for guests to visit when connected to our WiFi. I then installed a new SSD and partitioned it with the fdisk utility. Finally, I try my hand at some virtualization. I had a lot of fun with this and plan on doing more in the future. 
 
 ## <a name="initial"></a>Initial Setup
 I downloaded the Ubuntu server ISO to my USB stick and wiped the drive. The setup was very easy and straight forward. I used DHCP for the inital interface setup, but used my routers web interface to set the server to a static IP. Now I can login and get started.
@@ -260,6 +261,58 @@ $ tail -2 /etc/fstab
 
 <p align="center"><img alt="nvme" src="images/12FinalMount.png" height="auto" width="800"></p>
 
+## <a name="virtual"></a>Virtualization KVM & QEMU
+
+Kernel-based VM and Quick Emulator allow Linux to use virtualization without third party solutions, such as VirtualBox.
+
+```shell
+$ sudo apt install bridge-utils libvirt-clients libvirt-daemon-system qemu-system-x86 
+$ sudo systemctl stop libvirtd
+# These groups were autocreated, but our user was only added to libvert
+# So we will add user to kvm group
+$ cat /etc/group | grep kvm
+$ cat /etc/group | grep libvirt
+$ sudo usermod -aG kvm wannabe_admin
+# kvm group will need access to where our ISO images will be stored
+$ sudo chown :kvm /var/lib/libvirt/images/ISO
+$ sudo chmod g+rw /var/lib/libvirt/images/ISO
+$ sudo systemctl start libvirtd
+$ sudo systemctl status libvirtd
+
+# Carefully editing the configuration file for our network interfaces to add a bridge
+# This will allow all our network devices to talk to the virtual machine
+$ sudo cat /etc/netplan/50-cloud-init.yaml
+[sudo] password for wannabe_admin: 
+network:
+  version: 2
+  ethernets:
+    enp3s0:
+      dhcp4: true
+  bridges:
+    br0:
+      interfaces: [enp3s0]
+      dhcp4: true
+      parameters:
+        stp: false
+        forward-delay: 0
+ # Rebooting the server
+ $ sudo reboot now
+```
+
+<p align="center"><img alt="nvme" src="images/15Rocky.png" height="auto" width="800"></p>
+
+Back on desktop with GUI
+
+```shell
+# Installing virtual machine manager for GUI
+$ sudo apt install ssh-askpass virt-manager
+# Install an ISO. I went with Rocky Linux Minimal ISO
+$ scp Rocky-9.5-x86_64-minimal.iso wannabe_admin@ubuntu-home-server:
+# Then on the server I cp the ISO to the /var/lib/libvirt/images/ISO directory
+```
+
+<p align="center"><img alt="nvme" src="images/18Bridged.png" height="auto" width="800"></p>
+
 ## <a name="summary"></a>Summary
 
-I turned an old gaming laptop into a home server running Ubuntu 24.04.2 LTS just to mess around and learn more about Linux. I’ve been using Linux for over a year now and wanted to put what I’ve learned into action. In this project, I set up Samba, NFS, MariaDB, Apache2 (with a custom web page), and even installed a new SSD just for the fun of partitioning and formatting it. Everything’s still a work in progress, but it’s been a great learning experience so far. More to come!
+I turned an old gaming laptop into a home server running Ubuntu 24.04.2 LTS just to mess around and learn more about Linux. I’ve been using Linux for over a year now and wanted to put what I’ve learned into action. In this project, I set up Samba, NFS, MariaDB, Apache2 (with a custom web page), and even installed a new SSD just for the fun of partitioning and formatting it. Then I tried out virtualization which required a lot more setup than VirtualBox. Everything’s still a work in progress, but it’s been a great learning experience so far. More to come!
