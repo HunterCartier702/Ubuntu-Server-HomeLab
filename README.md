@@ -285,9 +285,10 @@ $ sudo cat /etc/netplan/50-cloud-init.yaml
 [sudo] password for wannabe_admin: 
 network:
   version: 2
+  renderer: networkd
   ethernets:
     enp3s0:
-      dhcp4: true
+      dhcp4: false
   bridges:
     br0:
       interfaces: [enp3s0]
