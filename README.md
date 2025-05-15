@@ -311,6 +311,8 @@ $ scp Rocky-9.5-x86_64-minimal.iso wannabe_admin@ubuntu-home-server:
 # Then on the server I cp the ISO to the /var/lib/libvirt/images/ISO directory
 ```
 
+***After running through the setup process with virtual machine manager I have a running VM on my server:***
+
 <p align="center"><img alt="nvme" src="images/18Bridged.png" height="auto" width="800"></p>
 
 ## <a name="summary"></a>Summary
