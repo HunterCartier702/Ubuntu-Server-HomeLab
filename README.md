@@ -17,6 +17,7 @@ I turned my old gaming laptop into an Ubuntu server for practice. I've been usin
 I downloaded the Ubuntu server ISO to my USB stick and wiped the drive. The setup was very easy and straight forward. I used DHCP for the inital interface setup, but used my routers web interface to set the server to a static IP. Now I can login and get started.
 
 **First commands:**
+
 ```shell
 # First I update the system
 $ sudo apt update && sudo apt upgrade
@@ -31,6 +32,7 @@ $ sudo ufw enable
 ***I then create my .vimrc file with my personal preferences and copy it to the /etc/skel directory, so when I create a new user they also get that file. Openssh-server was installed initially so now it's time to sit comfortably at my desktop and SSH in.***
 
 ***SSH:***
+
 ```shell
 # I edit the /etc/banner and edit /etc/ssh/sshd_config file to allow a banner so I can add my own custom one
 # Adding servers hostname to hosts file
@@ -47,6 +49,7 @@ $ ssh-copy-id wannabe_admin@ubuntu-home-server
 <p align="center"><img alt="SSH Banner" src="images/1SSHLogin.png" height="auto" width="600"></p>
 
 ***Fixing the timezone:***
+
 ```shell
 $ timedatectl
 # timezone is ahead about 4 hours and this will abviously mess up any cron jobs
@@ -56,6 +59,7 @@ $ sudo timedatectl set-timezone America/Los_Angeles
 ```
 
 ***Adding my first unprivileged user:***
+
 ```shell
 $ sudo useradd -m -d /home/cartier -c "Hunter Cartier" -s /bin/bash cartier
 $ tail -1 /etc/passwd
@@ -73,6 +77,7 @@ passwd: password updated successfully
 
 ## <a name="samba"></a>Installing Samba
 I set up a samba share as I have one windows pc and it may come in handy related to school projects and transferring files.
+
 ```shell
 $ sudo apt install samba
 
