@@ -4,9 +4,11 @@
 
   - [Introduction](#intro)
   - [Inital Setup](#initial)
+  - [Installing Samba](#samba)
 
 ## <a name="intro"></a>Intro: The Home-Labtop
 I turned my old gaming laptop into an Ubuntu server for practice. I've been using Linux for a over a year now starting back with VM's in Virtual Box. Then I upgraded to downloading an ISO with a USB stick and putting Linux Mint on both my laptops and dual booting my desktop. Then I took my stab at Linux+ and passed. Now while I don't care much for the certification I did learn a lot more about Linux in the process of studying for it. I then bought book about Ubuntu server and learned even more to add to my previous studying. And that is what brought me here. Finally testing some of what I had learned. I don't have fancy hardware for this home lab.. yet. I used this as more of a test. This setup I have is very temporary while I look into a more long-term solution as I continue to learn and figure out what I am after. So far I setup Samba, NFS, MariaDB, and Apache2 with my own web page that I made for guests to visit when connected to our WiFi. I then installed a new SSD and partitioned it with fdisk. I had a lot of fun with this and plan on doing more in the future. 
+
 ## <a name="initial"></a>Initial Setup
 I downloaded the Ubuntu server ISO to my USB stick and wiped the drive. The setup was very easy and straight forward. I used DHCP for the inital interface setup, but used my routers web interface to set the server to a static IP. Now I can login and get started.
 
@@ -22,7 +24,7 @@ $ sudo ufw enable
 ***HTOP is one of those tools that looks really confusing when you first see it, but once you start to learn what its showing it really is an awesome tool:***
 <p align="center"><img alt="HTOP" src="images/3HTOP.png" height="auto" width="600"></p>
 
-I then create my .vimrc file with my personal preferences and copy it to the /etc/skel directory, so when I create a new user they also get that file. Openssh-server was installed initially so now it's time to sit comfortably at my desktop and SSH in.
+***I then create my .vimrc file with my personal preferences and copy it to the /etc/skel directory, so when I create a new user they also get that file. Openssh-server was installed initially so now it's time to sit comfortably at my desktop and SSH in.***
 
 ***SSH:***
 ```shell
@@ -59,3 +61,53 @@ New password:
 Retype new password: 
 passwd: password updated successfully
 ```
+
+***I decided to create a simple cronjob just cause***
+<p align="center"><img alt="Cron" src="images/2Crontab.png" height="auto" width="600"></p>
+
+## <a name="samba"></a>Installing Samba
+I set up a samba share as I have one windows pc and it may come in handy related to school projects and transferring files.
+```shell
+$ sudo apt install samba
+
+$ testparm /etc/samba/smb.conf
+Load smb config files from /etc/samba/smb.conf
+Loaded services file OK.
+# A simple configuration file to get started:
+
+# Global parameters
+[global]
+	map to guest = Bad User
+	name resolve order = host bcast wins
+	security = USER
+	server string = File Server
+	idmap config * : backend = tdb
+	include = /etc/samba/smbshared.conf
+
+
+[Documents]
+	force group = users
+	force user = cartier
+	guest ok = Yes
+	path = /share/documents
+
+
+[Public]
+	create mask = 0664
+	directory mask = 0777
+	force create mode = 0644
+	force directory mode = 0777
+	force group = users
+	force user = cartier
+	guest ok = Yes
+	path = /share/public
+	read only = No
+
+
+$ sudo mkdir -p /share/documents 
+$ sudo mkdir /share/public
+$ sudo chown -R cartier:users /share
+$ sudo systemctl start smbd
+$ smbclient //ubuntu-home-server/documents -U cartier
+```
+<p align="center"><img alt="smbclient" src="images/4SMBClient.png" height="auto" width="600"></p>
