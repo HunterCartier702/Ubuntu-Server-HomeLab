@@ -6,6 +6,7 @@
   - [Inital Setup](#initial)
   - [Installing Samba](#samba)
   - [Installing NFS](#nfs)
+  - [Installing MariaDB](#maria)
 
 ## <a name="intro"></a>Intro: The Home-Labtop
 I turned my old gaming laptop into an Ubuntu server for practice. I've been using Linux for a over a year now starting back with VM's in Virtual Box. Then I upgraded to downloading an ISO with a USB stick and putting Linux Mint on both my laptops and dual booting my desktop. Then I took my stab at Linux+ and passed. Now while I don't care much for the certification I did learn a lot more about Linux in the process of studying for it. I then bought book about Ubuntu server and learned even more to add to my previous studying. And that is what brought me here. Finally testing some of what I had learned. I don't have fancy hardware for this home lab.. yet. I used this as more of a test. This setup I have is very temporary while I look into a more long-term solution as I continue to learn and figure out what I am after. So far I setup Samba, NFS, MariaDB, and Apache2 with my own web page that I made for guests to visit when connected to our WiFi. I then installed a new SSD and partitioned it with fdisk. I had a lot of fun with this and plan on doing more in the future. 
@@ -142,3 +143,29 @@ $ ls /mnt/documents
 nfs_share.txt
 ```
 <p align="center"><img alt="NFS" src="images/5NFS_Share.png" height="auto" width="600"></p>
+
+## <a name="maria"></a>Installing MariaDB
+I also setup MariaDB although I don't do much with it. It was still fun. 
+```shell
+$ sudo apt install mariadb-server
+#run security script
+$ sudo mysql_secure_installation
+$ sudo mariadb #enter db shell
+#Create admin acc
+$CREATE USER 'admin'@'localhost' IDENTIFIED BY '<password>';
+$ GRANT SELECT ON *.* TO 'readonlyuser'@'localhost' IDENTIFIED BY '<password>';
+$ GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost';
+$ FLUSH PRIVILEGES;
+$ exit
+$ mariadb -u admin -p
+$ CREATE DATABASE mysampledb;
+$ USE mysampledb;
+$ SHOW DATABASES;
+$ SELECT HOST, USER, PASSWORD FROM mysql.user;
+$ CREATE TABLE Employees (Name char(20), Age int(3), Occupation char(20));
+$ SHOW COLUMNS IN Employees;
+$ INSERT INTO Employees VALUES ('Elliot Alderson', '25', 'Sec Engineer');
+$ SELECT * FROM Employees;
+```
+<p align="center"><img alt="maria" src="images/6MariaDB.png" height="auto" width="600"></p>
+<p align="center"><img alt="maria2" src="images/7MariaTables.png" height="auto" width="600"></p>
