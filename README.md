@@ -7,6 +7,7 @@
   - [Installing Samba](#samba)
   - [Installing NFS](#nfs)
   - [Installing MariaDB](#maria)
+  - [Installing Apache2](#apache)
 
 ## <a name="intro"></a>Intro: The Home-Labtop
 I turned my old gaming laptop into an Ubuntu server for practice. I've been using Linux for a over a year now starting back with VM's in Virtual Box. Then I upgraded to downloading an ISO with a USB stick and putting Linux Mint on both my laptops and dual booting my desktop. Then I took my stab at Linux+ and passed. Now while I don't care much for the certification I did learn a lot more about Linux in the process of studying for it. I then bought book about Ubuntu server and learned even more to add to my previous studying. And that is what brought me here. Finally testing some of what I had learned. I don't have fancy hardware for this home lab.. yet. I used this as more of a test. This setup I have is very temporary while I look into a more long-term solution as I continue to learn and figure out what I am after. So far I setup Samba, NFS, MariaDB, and Apache2 with my own web page that I made for guests to visit when connected to our WiFi. I then installed a new SSD and partitioned it with fdisk. I had a lot of fun with this and plan on doing more in the future. 
@@ -169,3 +170,15 @@ $ SELECT * FROM Employees;
 ```
 <p align="center"><img alt="maria" src="images/6MariaDB.png" height="auto" width="600"></p>
 <p align="center"><img alt="maria2" src="images/7MariaTables.png" height="auto" width="600"></p>
+
+## <a name="apache"></a>Installing Apache2
+This was probably the easiest one and the most fun to setup. It was fun because I know some simple web development and was able to create and host my own website for guests to see when they come over and connect to the wifi.
+```shell
+$ sudo apt install apache2
+$ sudo mv /var/www/html/index.html /var/www/html/index.orig
+$ sudo cp cartierHomePage.tar.gz /var/www/html/
+$ sudo tar -xzvf cartierHomePage.tar.gz
+# in this tarball I have my own index.html page to host a web page I created
+$ sudo systemctl reload apache2
+```
+<p align="center"><img alt="apache2" src="images/8Apache.png" height="auto" width="600"></p>
