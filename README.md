@@ -5,6 +5,7 @@
   - [Introduction](#intro)
   - [Inital Setup](#initial)
   - [Installing Samba](#samba)
+  - [Installing NFS](#nfs)
 
 ## <a name="intro"></a>Intro: The Home-Labtop
 I turned my old gaming laptop into an Ubuntu server for practice. I've been using Linux for a over a year now starting back with VM's in Virtual Box. Then I upgraded to downloading an ISO with a USB stick and putting Linux Mint on both my laptops and dual booting my desktop. Then I took my stab at Linux+ and passed. Now while I don't care much for the certification I did learn a lot more about Linux in the process of studying for it. I then bought book about Ubuntu server and learned even more to add to my previous studying. And that is what brought me here. Finally testing some of what I had learned. I don't have fancy hardware for this home lab.. yet. I used this as more of a test. This setup I have is very temporary while I look into a more long-term solution as I continue to learn and figure out what I am after. So far I setup Samba, NFS, MariaDB, and Apache2 with my own web page that I made for guests to visit when connected to our WiFi. I then installed a new SSD and partitioned it with fdisk. I had a lot of fun with this and plan on doing more in the future. 
@@ -65,6 +66,8 @@ passwd: password updated successfully
 ***I decided to create a simple cronjob just cause***
 <p align="center"><img alt="Cron" src="images/2Crontab.png" height="auto" width="600"></p>
 
+***Now time to install services. Ubuntu starts services when they're installed, so after editing the config files I usually just run "sudo systemctl restart/reload <service>"***
+
 ## <a name="samba"></a>Installing Samba
 I set up a samba share as I have one windows pc and it may come in handy related to school projects and transferring files.
 ```shell
@@ -111,3 +114,31 @@ $ sudo systemctl start smbd
 $ smbclient //ubuntu-home-server/documents -U cartier
 ```
 <p align="center"><img alt="smbclient" src="images/4SMBClient.png" height="auto" width="600"></p>
+
+## <a name="nfs"></a>Installing NFS
+I know I already have a Samba share, but I still wanted to do this for the practice. 
+```shell
+# On server: 
+$ man exports # documentation
+# Creating directories for the shares. Each share in NFS is known as an export
+$ sudo mkdir -p /exports/backup
+$ sudo mkdir /exports/documents
+$ sudo mkdir /exports/public
+$ sudo apt install nfs-kernel-server
+
+# Creating the exports file
+$ cat /etc/exports
+/exports *(ro,fsid=0,no_subtree_check)
+/exports/backup 192.168.0.1/255.255.255.0(rw,no_subtree_check)
+/exports/documents 192.168.0.1/255.255.255.0(ro,no_subtree_check)
+/exports/public 192.168.0.1/255.255.255.0(rw,no_subtree_check)
+
+# From client:
+$ sudo apt update && sudo apt install nfs-common
+$ sudo mkdir /mnt/documents
+$ sudo mount 192.168.0.231:/documents /mnt/documents
+# NFS isn't as easy as Samba. What do you think?
+$ ls /mnt/documents
+nfs_share.txt
+```
+<p align="center"><img alt="NFS" src="images/5NFS_Share.png" height="auto" width="600"></p>
