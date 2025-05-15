@@ -254,5 +254,6 @@ $ tail -2 /etc/fstab
   # Extra Storage
   UUID=5eef5737-258c-4d35-a0f0-a153174d05f5 /mnt/vol1 ext4 defaults 0 0
 ```
+***Looks like I was able to reboot!***
 
 <p align="center"><img alt="nvme" src="images/12FinalMount.png" height="auto" width="600"></p>
