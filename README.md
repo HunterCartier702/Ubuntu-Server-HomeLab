@@ -181,4 +181,4 @@ $ sudo tar -xzvf cartierHomePage.tar.gz
 # in this tarball I have my own index.html page to host a web page I created
 $ sudo systemctl reload apache2
 ```
-<p align="center"><img alt="apache2" src="images/8Apache.png" height="auto" width="600"></p>
+<p align="center"><img alt="apache2" src="images/8Apache.png" height="auto" width="900"></p>
