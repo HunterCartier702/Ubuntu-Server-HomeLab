@@ -19,7 +19,7 @@ $ sudo apt install vim build-essential vlock htop tree
 $ sudo ufw enable
 # Don't forget to edit firewall rules for added services!
 ```
-***HTOP is one of those things that looks confusing when you first see it, but once you start to learn what its showing it really is an awesome tool***
+***HTOP is one of those things that looks confusing when you first see it, but once you start to learn what its showing it really is an awesome tool:***
 <p align="center"><img alt="HTOP" src="images/3HTOP.png" height="auto" width="600"></p>
 
 I then create my .vimrc file with my personal preferences and copy it to the /etc/skel directory, so when I create a new user they also get that file. Openssh-server was installed initially so now it's time to sit comfortably at my desktop and SSH in.
@@ -49,3 +49,13 @@ $ sudo timedatectl set-timezone America/Los_Angeles
 # That fixed it
 ```
 
+***Adding my first unprivileged user:***
+```shell
+$ sudo useradd -m -d /home/cartier -c "Hunter Cartier" -s /bin/bash cartier
+$ tail -1 /etc/passwd
+cartier:x:1001:1001:Hunter Cartier:/home/cartier:/bin/bash
+$ sudo passwd cartier
+New password: 
+Retype new password: 
+passwd: password updated successfully
+```
