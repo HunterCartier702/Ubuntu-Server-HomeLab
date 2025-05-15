@@ -150,7 +150,7 @@ $ sudo mount 192.168.0.231:/documents /mnt/documents
 $ ls /mnt/documents
 nfs_share.txt
 ```
-<p align="center"><img alt="NFS" src="images/5NFS_Share.png" height="auto" width="800"></p>
+<p align="center"><img alt="NFS" src="images/5NFS_Share.png" height="auto" width="900"></p>
 
 ## <a name="maria"></a>Installing MariaDB
 I also setup MariaDB although I don't do much with it. It was still fun. 
@@ -194,7 +194,8 @@ $ sudo systemctl reload apache2
 
 ## <a name="ssd"></a>My Favorite Part. Installing an SSD
 For this I bought a $20 256GB NVMe M.2 PCIe 2280 SSD all for the sole purpose of installing and partitioning the new drive. You gotta learn somehow..
-<p align="center"><img alt="motherboard" src="images/9SSD.jpeg" height="auto" width="600"></p>
+
+<p align="center"><img alt="motherboard" src="images/9SSD.jpeg" height="auto" width="700"></p>
 
 ***Creating a GPT partition:***
 
@@ -218,7 +219,7 @@ $ sudo fdisk /dev/nvme1n1
   Calling ioctl() to re-read partition table.
   Syncing disks.
 ```
-<p align="center"><img alt="nvme" src="images/10LSBLK.png" height="auto" width="600"></p>
+<p align="center"><img alt="nvme" src="images/10LSBLK.png" height="auto" width="800"></p>
 
 ***Formatting Partition***
 
@@ -238,7 +239,7 @@ $ sudo mkfs.ext4 /dev/nvme1n1p1
   Writing superblocks and filesystem accounting information: done
 ```
 
-<p align="center"><img alt="nvme" src="images/11FdiskDone.png" height="auto" width="600"></p>
+<p align="center"><img alt="nvme" src="images/11FdiskDone.png" height="auto" width="800"></p>
 
 ***Adding Drive to /etc/fstab***
 
@@ -256,4 +257,4 @@ $ tail -2 /etc/fstab
 ```
 ***Looks like I was able to reboot!***
 
-<p align="center"><img alt="nvme" src="images/12FinalMount.png" height="auto" width="600"></p>
+<p align="center"><img alt="nvme" src="images/12FinalMount.png" height="auto" width="800"></p>
