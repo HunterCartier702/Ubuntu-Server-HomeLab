@@ -19,7 +19,7 @@ $ sudo apt install vim build-essential vlock htop tree
 $ sudo ufw enable
 # Don't forget to edit firewall rules for added services!
 ```
-***HTOP is one of those things that looks confusing when you first see it, but once you start to learn what its showing it really is an awesome tool:***
+***HTOP is one of those tools that looks really confusing when you first see it, but once you start to learn what its showing it really is an awesome tool:***
 <p align="center"><img alt="HTOP" src="images/3HTOP.png" height="auto" width="600"></p>
 
 I then create my .vimrc file with my personal preferences and copy it to the /etc/skel directory, so when I create a new user they also get that file. Openssh-server was installed initially so now it's time to sit comfortably at my desktop and SSH in.
