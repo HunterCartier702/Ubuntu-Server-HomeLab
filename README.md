@@ -16,7 +16,11 @@ I downloaded the Ubuntu server ISO to my USB stick and wiped the drive. The setu
 $ sudo apt update && sudo apt upgrade
 # I then install what I can think of off the top of my head especially Vim
 $ sudo apt install vim build-essential vlock htop tree
+$ sudo ufw enable
+# Don't forget to edit firewall rules for added services!
 ```
+***HTOP is one of those things that looks confusing when you first see it, but once you start to learn what its showing it really is an awesome tool***
+<p align="center"><img alt="HTOP" src="images/3HTOP.png" height="auto" width="600"></p>
 
 I then create my .vimrc file with my personal preferences and copy it to the /etc/skel directory, so when I create a new user they also get that file. Openssh-server was installed initially so now it's time to sit comfortably at my desktop and SSH in.
 
@@ -35,3 +39,13 @@ $ ssh-copy-id wannabe_admin@ubuntu-home-server
 ```
 
 <p align="center"><img alt="SSH Banner" src="images/1SSHLogin.png" height="auto" width="600"></p>
+
+***Fixing the timezone:***
+```shell
+$ timedatectl
+# timezone is ahead about 4 hours and this will abviously mess up any cron jobs
+$ timedatectl list-timezones | grep Los
+$ sudo timedatectl set-timezone America/Los_Angeles
+# That fixed it
+```
+
