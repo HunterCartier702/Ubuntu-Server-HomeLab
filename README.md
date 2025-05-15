@@ -12,6 +12,24 @@ I downloaded the Ubuntu server ISO to my USB stick and wiped the drive. The setu
 
 **First commands:**
 ```shell
+# First I update the system
 $ sudo apt update && sudo apt upgrade
-$ sudo apt install vim build-essential vlock htop
+# I then install what I can think of off the top of my head especially Vim
+$ sudo apt install vim build-essential vlock htop tree
 ```
+
+I then create my .vimrc file with my personal preferences and copy it to the /etc/skel directory, so when I create a new user they also get that file. Openssh-server was installed initially so now it's time to sit comfortably at my desktop and SSH in.
+
+***SSH:***
+'''shell
+# Adding servers hostname to hosts file
+sudo echo -e "192.168.x.x\tubuntu-home-server" >> /etc/hosts
+# Creating an alias for the ssh command
+echo 'alias server="ssh wannabe_admin@ubuntu-home-server"' >> .bashrc
+# Generating keys for pub key auth
+ssh-keygen
+# Copying public key to server
+ssh-copy-id wannabe_admin@ubuntu-home-server
+# Finally I edit the /etc/banner and edit /etc/ssh/sshd_config file to allow a banner so I can add my own custom one
+'''
+<p align="center"><img alt="SSH Banner" src="images/1SSHLogin.png" height="auto" width="600"></p>
