@@ -8,6 +8,7 @@
   - [Installing NFS](#nfs)
   - [Installing MariaDB](#maria)
   - [Installing Apache2](#apache)
+  - [My Favorite Part. Installing an SSD](#ssd)
 
 ## <a name="intro"></a>Intro: The Home-Labtop
 I turned my old gaming laptop into an Ubuntu server for practice. I've been using Linux for a over a year now starting back with VM's in Virtual Box. Then I upgraded to downloading an ISO with a USB stick and putting Linux Mint on both my laptops and dual booting my desktop. Then I took my stab at Linux+ and passed. Now while I don't care much for the certification I did learn a lot more about Linux in the process of studying for it. I then bought book about Ubuntu server and learned even more to add to my previous studying. And that is what brought me here. Finally testing some of what I had learned. I don't have fancy hardware for this home lab.. yet. I used this as more of a test. This setup I have is very temporary while I look into a more long-term solution as I continue to learn and figure out what I am after. So far I setup Samba, NFS, MariaDB, and Apache2 with my own web page that I made for guests to visit when connected to our WiFi. I then installed a new SSD and partitioned it with fdisk. I had a lot of fun with this and plan on doing more in the future. 
@@ -181,4 +182,66 @@ $ sudo tar -xzvf cartierHomePage.tar.gz
 # in this tarball I have my own index.html page to host a web page I created
 $ sudo systemctl reload apache2
 ```
-<p align="center"><img alt="apache2" src="images/8Apache.png" height="auto" width="900"></p>
+<p align="center"><img alt="apache2" src="images/8Apache.png" height="auto" width="1000"></p>
+
+## <a name="ssd"></a>My Favorite Part. Installing an SSD
+For this I bought a $20 256GB NVMe M.2 PCIe 2280 SSD all for the sole purpose of installing and partitioning the new drive. You gotta learn somehow..
+<p align="center"><img alt="motherboard" src="images/9SSD.jpeg" height="auto" width="600"></p>
+***Creating a GPT partition:***
+
+```shell
+# Listing block devices:
+$ lsblk 
+$ sudo fdisk -l 
+$ sudo fdisk /dev/nvme1n1
+# creating GPT partition:
+  Command (m for help): g
+  Created a new GPT disklabel
+  Command (m for help): n
+  Partition number (1-128, default 1): 
+  First sector (2048-500118158, default 2048): 
+  Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-500118158, default 500117503): 
+
+  Created a new partition 1 of type 'Linux filesystem' and of size 238.5 GiB.
+# Writing changes to the drive
+  Command (m for help): w
+  The partition table has been altered.
+  Calling ioctl() to re-read partition table.
+  Syncing disks.
+```
+<p align="center"><img alt="nvme" src="images/10LSBLK.png" height="auto" width="600"></p>
+
+***Formatting Partition***
+
+```shell
+$ sudo mkfs.ext4 /dev/nvme1n1p1
+  mke2fs 1.47.0 (5-Feb-2023)
+  Discarding device blocks: done                            
+  Creating filesystem with 62514432 4k blocks and 15630336 inodes
+  Filesystem UUID: 5eef5737-258c-4d35-a0f0-a153174d05f5
+  Superblock backups stored on blocks: 
+	  32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, 
+	  4096000, 7962624, 11239424, 20480000, 23887872
+
+  Allocating group tables: done                            
+  Writing inode tables: done                            
+  Creating journal (262144 blocks): done
+  Writing superblocks and filesystem accounting information: done
+```
+
+<p align="center"><img alt="nvme" src="images/11FdiskDone.png" height="auto" width="600"></p>
+***Adding Drive to /etc/fstab***
+Be careful editing this file. Edit this file to add additional volumes to be mounted at boot time. However, this file also mounts your main file system, so one mistake and you're not booting. 
+
+```shell
+# Creating mount point
+$ sudo mkdir /mnt/vol1
+# Getting UUID for fstab file
+$ sudo blkid
+$ sudo vim /etc/fstab
+$ tail -2 /etc/fstab
+  # Extra Storage
+  UUID=5eef5737-258c-4d35-a0f0-a153174d05f5 /mnt/vol1 ext4 defaults 0 0
+```
+
+<p align="center"><img alt="nvme" src="images/12FinalMount.png" height="auto" width="600"></p>
