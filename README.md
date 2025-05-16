@@ -302,7 +302,7 @@ network:
 
 <p align="center"><img alt="nvme" src="images/15Rocky.png" height="auto" width="800"></p>
 
-Back on desktop with GUI
+***Back on my desktop with GUI:***
 
 ```shell
 # Installing virtual machine manager for GUI
