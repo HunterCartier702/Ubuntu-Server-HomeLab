@@ -316,7 +316,7 @@ $ scp Rocky-9.5-x86_64-minimal.iso wannabe_admin@ubuntu-home-server:
 
 <p align="center"><img alt="nvme" src="images/18Bridged.png" height="auto" width="800"></p>
 
-***Managing Virual Machines from the Command Line:***
+***Managing Virtual Machines from the Command Line:***
 
 ```shell
 $ virsh list --all
