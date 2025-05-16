@@ -316,6 +316,26 @@ $ scp Rocky-9.5-x86_64-minimal.iso wannabe_admin@ubuntu-home-server:
 
 <p align="center"><img alt="nvme" src="images/18Bridged.png" height="auto" width="800"></p>
 
+***Managing Virual Machines from the Command Line:***
+
+```shell
+$ virsh list --all
+ Id   Name              State
+---------------------------------
+-    RockyAlmaLinux9   shut off
+
+$ virsh start RockyAlmaLinux9
+Domain 'RockyAlmaLinux9' started
+
+$ virsh list
+ Id   Name              State
+---------------------------------
+ 1    RockyAlmaLinux9   running
+
+$ virsh shutdown RockyAlmaLinux9
+Domain 'RockyAlmaLinux9' is being shutdown
+```
+
 ## <a name="summary"></a>Summary
 
 I turned an old gaming laptop into a home server running Ubuntu 24.04.2 LTS just to mess around and learn more about Linux. I’ve been using Linux for over a year now and wanted to put what I’ve learned into action. In this project, I set up Samba, NFS, MariaDB, Apache2 (with a custom web page), and even installed a new SSD just for the fun of partitioning and formatting it. Then I tried out virtualization which required a lot more setup than VirtualBox. Everything’s still a work in progress, but it’s been a great learning experience so far. More to come!
