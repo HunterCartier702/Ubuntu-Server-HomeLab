@@ -84,7 +84,7 @@ I set up a samba share as I have one windows pc and it may come in handy related
 ```shell
 $ sudo apt install samba
 
-# running testparm against my config file to and it returns this:
+# running testparm against my config file and it returns this:
 $ testparm /etc/samba/smb.conf
 Load smb config files from /etc/samba/smb.conf
 Loaded services file OK.
