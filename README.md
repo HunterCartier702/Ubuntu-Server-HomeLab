@@ -22,7 +22,8 @@ I downloaded the Ubuntu server ISO to my USB stick and wiped the drive. The setu
 
 ```shell
 # First I update the system
-$ sudo apt update && sudo apt upgrade
+$ sudo apt update && sudo apt full-upgrade
+$ sudo reboot now
 # I then install what I can think of off the top of my head especially Vim
 $ sudo apt install vim build-essential vlock htop tree
 $ sudo ufw enable
