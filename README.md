@@ -118,11 +118,12 @@ Loaded services file OK.
 	path = /share/public
 	read only = No
 
-
+# creating the directory shares
 $ sudo mkdir -p /share/documents 
 $ sudo mkdir /share/public
 $ sudo chown -R cartier:users /share
 $ sudo systemctl start smbd
+
 # testing that I can access the share from my desktop
 $ smbclient //ubuntu-home-server/documents -U cartier
 ```
