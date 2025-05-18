@@ -84,6 +84,7 @@ I set up a samba share as I have one windows pc and it may come in handy related
 ```shell
 $ sudo apt install samba
 
+# running testparm against my config file to and it returns this:
 $ testparm /etc/samba/smb.conf
 Load smb config files from /etc/samba/smb.conf
 Loaded services file OK.
@@ -122,6 +123,7 @@ $ sudo mkdir -p /share/documents
 $ sudo mkdir /share/public
 $ sudo chown -R cartier:users /share
 $ sudo systemctl start smbd
+# testing that I can access the share from my desktop
 $ smbclient //ubuntu-home-server/documents -U cartier
 ```
 <p align="center"><img alt="smbclient" src="images/4SMBClient.png" height="auto" width="800"></p>
