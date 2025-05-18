@@ -152,7 +152,7 @@ $ cat /etc/exports
 $ sudo apt update && sudo apt install nfs-common
 $ sudo mkdir /mnt/documents
 $ sudo mount 192.168.0.231:/documents /mnt/documents
-# NFS isn't as easy as Samba. What do you think?
+# checking share contents 
 $ ls /mnt/documents
 nfs_share.txt
 ```
@@ -163,11 +163,11 @@ I also setup MariaDB although I don't do much with it. It was still fun.
 
 ```shell
 $ sudo apt install mariadb-server
-#run security script
+# run security script
 $ sudo mysql_secure_installation
 $ sudo mariadb #enter db shell
-#Create admin acc
-$CREATE USER 'admin'@'localhost' IDENTIFIED BY '<password>';
+# Create admin acc
+$ CREATE USER 'admin'@'localhost' IDENTIFIED BY '<password>';
 $ GRANT SELECT ON *.* TO 'readonlyuser'@'localhost' IDENTIFIED BY '<password>';
 $ GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost';
 $ FLUSH PRIVILEGES;
