@@ -285,6 +285,7 @@ $ sudo systemctl status libvirtd
 
 # Carefully editing the configuration file for our network interfaces to add a bridge
 # This will allow all our network devices to talk to the virtual machine
+# not best practice as usually the point of vm's is to be isolated but I have never done it before so i wanted to try
 $ sudo cat /etc/netplan/50-cloud-init.yaml
 [sudo] password for wannabe_admin: 
 network:
