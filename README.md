@@ -10,6 +10,7 @@
   - [Installing Apache2](#apache)
   - [My Favorite Part. Installing an SSD](#ssd)
   - [Virtualization KVM & QEMU](#virtual)
+  - [Securing OpenSSH-Server](#ssh)
   - [Summary](#summary)
 
 ## <a name="intro"></a>Intro: The Home-Labtop
@@ -339,6 +340,28 @@ $ virsh list
 
 $ virsh shutdown RockyAlmaLinux9
 Domain 'RockyAlmaLinux9' is being shutdown
+```
+
+## <a name="ssh"></a>Securing OpenSSH-Server
+
+The more services you are runnung the larger your attack surface. This server is a temporary test server used for practicing until I purchase a more serious and long-term solution. I would never allow this server open to the public internet through something such as port fowarding. This server does have some security by default as it sits behind my router. Here I practice a few ways of securing SSH.
+
+```shell
+$ man sshd_config
+# openssh log attempts:
+$ tail -20 /var/log/auth.log
+# Editing /etc/ssh/sshd_config:
+# Default allows ssh keys but not passwd for root login. No means no remote login at all
+PermitRootLogin no
+PasswordAuthentication no
+AllowGroups sshusers
+# Could also change default port from 22 as that is a common port that bots may scan
+# My ssh-server is not publicly facing the internet so I will leave it
+
+$ sudo apt update && sudo apt install fail2ban
+# jail.local overwrites jail.conf and jail.conf could also be overwritten during updates
+$ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+# edit jail.local
 ```
 
 ## <a name="summary"></a>Summary
