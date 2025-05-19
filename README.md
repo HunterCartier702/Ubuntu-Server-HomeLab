@@ -74,7 +74,7 @@ Retype new password:
 passwd: password updated successfully
 ```
 
-***I decided to create a simple cronjob just cause***
+***I decided to create a simple cronjob just because***
 <p align="center"><img alt="Cron" src="images/2Crontab.png" height="auto" width="800"></p>
 
 ***Now time to install services. Ubuntu starts services when they're installed, so after editing the config files I usually just run "sudo systemctl restart/reload \<service\>"***
