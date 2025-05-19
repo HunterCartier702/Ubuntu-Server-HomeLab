@@ -354,6 +354,7 @@ $ tail -20 /var/log/auth.log
 # Default allows ssh keys but not passwd for root login. No means no remote login at all
 PermitRootLogin no
 PasswordAuthentication no
+# allow only users from this group
 AllowGroups sshusers
 # Could also change default port from 22 as that is a common port that bots may scan
 # My ssh-server is not publicly facing the internet so I will leave it
