@@ -346,10 +346,10 @@ Domain 'RockyAlmaLinux9' is being shutdown
 
 ## <a name="ssh"></a>Securing OpenSSH-Server
 
-The more services you are running the larger your attack surface. This server is a temporary test server used for practicing until I purchase a more serious and long-term solution. I would never allow this server open to the public internet through something such as port fowarding. This server does have some security by default as it sits behind my router. Here I practice a few ways of securing SSH.
 
 ```shell
 $ man sshd_config
+$ sudo vim /etc/ssh/sshd_config
 # openssh log attempts:
 $ tail -20 /var/log/auth.log
 # Editing /etc/ssh/sshd_config:
