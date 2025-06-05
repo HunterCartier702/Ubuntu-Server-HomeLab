@@ -348,11 +348,11 @@ Domain 'RockyAlmaLinux9' is being shutdown
 
 
 ```shell
-$ man sshd_config
-$ sudo vim /etc/ssh/sshd_config
 # openssh log attempts:
 $ tail -20 /var/log/auth.log
 # Editing /etc/ssh/sshd_config:
+$ man sshd_config
+$ sudo vim /etc/ssh/sshd_config
 # Default allows ssh keys but not passwd for root login. No means no remote login at all
 PermitRootLogin no
 PasswordAuthentication no
