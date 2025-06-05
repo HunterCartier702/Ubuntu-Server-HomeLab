@@ -201,8 +201,8 @@ $ sudo systemctl reload apache2
 ```
 <p align="center"><img alt="apache2" src="images/8Apache.png" height="auto" width="1000"></p>
 
-## <a name="ssd"></a>My Favorite Part. Installing an SSD
-For this I bought a $20 256GB NVMe M.2 PCIe 2280 SSD all for the sole purpose of installing and partitioning the new drive. You gotta learn somehow..
+## <a name="ssd"></a>My Favorite Part: SSD Install
+For this I bought a $20 256GB NVMe M.2 PCIe 2280 SSD all for the sole purpose of installing, partitioning, and formatting the new drive. You gotta learn somehow.
 
 <p align="center"><img alt="motherboard" src="images/9SSD.jpeg" height="auto" width="700"></p>
 
@@ -252,7 +252,7 @@ $ sudo mkfs.ext4 /dev/nvme1n1p1
 
 ***Adding Drive to /etc/fstab***
 
-Be careful editing this file. Edit this file to add additional volumes to be mounted at boot time. However, this file also mounts your main file system, so one mistake and you're not booting. 
+Be careful editing this file. Edit this file to add additional volumes to be mounted at boot time. However, this file also mounts your main file system. 
 
 ```shell
 # Creating mount point
@@ -264,7 +264,7 @@ $ tail -2 /etc/fstab
   # Extra Storage
   UUID=5eef5737-258c-4d35-a0f0-a153174d05f5 /mnt/vol1 ext4 defaults 0 0
 ```
-***Looks like I was able to reboot!***
+***I reboot the system and check to see if it auto-mounted***
 
 <p align="center"><img alt="nvme" src="images/12FinalMount.png" height="auto" width="800"></p>
 
