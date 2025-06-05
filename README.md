@@ -82,7 +82,7 @@ passwd: password updated successfully
 ***Now time to install services. Ubuntu starts services when they're installed, so after editing the config files I usually just run "sudo systemctl restart/reload \<service\>"***
 
 ## <a name="samba"></a>Installing Samba
-I set up a samba share as I have one windows pc and it may come in handy related to school projects and transferring files.
+I set up a samba share.
 
 ```shell
 $ sudo apt install samba
