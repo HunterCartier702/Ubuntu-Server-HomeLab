@@ -8,7 +8,7 @@
   - [Installing NFS](#nfs)
   - [Installing MariaDB](#maria)
   - [Installing Apache2](#apache)
-  - [My Favorite Part. Installing an SSD](#ssd)
+  - [My Favorite Part: SSD Install](#ssd)
   - [Virtualization KVM & QEMU](#virtual)
   - [Securing OpenSSH-Server](#ssh)
   - [Summary](#summary)
