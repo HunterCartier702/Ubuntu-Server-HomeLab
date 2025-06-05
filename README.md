@@ -14,7 +14,7 @@
   - [Summary](#summary)
 
 ## <a name="intro"></a>Intro: The Home-Labtop
-I turned my old gaming laptop into an Ubuntu server for practice. I've been using Linux for a over a year now starting back with VM's in Virtual Box. I eventually upgraded to downloading an ISO with a USB stick and putting Linux Mint on both my laptops and dual booting my desktop. Then I took my stab at Linux+ and passed. Now while I don't care much for the certification I did learn a lot more about Linux in the process of studying for it. I then bought book about Ubuntu server and learned even more to add to my previous studying. And that is what brought me here. Finally testing some of what I had learned. 
+I turned my old gaming laptop into an Ubuntu server for practice. I've been using Linux for a over a year now starting with VM's in Virtual Box. I eventually put an ISO on a USB stick and installed Linux Mint on both of my laptops and dual booting my desktop. Then I took my stab at Linux+ and passed. Now while I don't care much for the certification I did learn a lot more about Linux in the process of studying for it. I then bought book about Ubuntu server and learned even more to add to my previous studying. And that is what brought me here. Finally testing some of what I had learned. 
 
 I don't have fancy hardware for this home lab.. yet. I used this as more of a test. This setup is temporary and for practice. I am planning on something more serious and long-term in the furture. I had a lot of fun with this and plan on doing more in the future. 
 
