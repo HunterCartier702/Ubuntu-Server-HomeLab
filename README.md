@@ -189,7 +189,7 @@ $ SELECT * FROM Employees;
 <p align="center"><img alt="maria2" src="images/7MariaTables.png" height="auto" width="600"></p>
 
 ## <a name="apache"></a>Installing Apache2
-This was fun to setup. It was fun because I know some simple web development and was able to create and host my own website for guests to see when they come over and connect to the wifi.
+This was fun to setup. It was fun because I know some simple web development and was able to create and host my own website on my local network.
 
 ```shell
 $ sudo apt install apache2
