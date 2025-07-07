@@ -23,10 +23,6 @@ I downloaded the Ubuntu server ISO to my USB stick and wiped the drive. The setu
 
 **First commands:**
 
-```console
-# root # this is a comment
-```
-
 ```shell
 # First I update the system
 $ sudo apt update && sudo apt full-upgrade
