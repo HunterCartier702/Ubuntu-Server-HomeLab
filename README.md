@@ -24,7 +24,7 @@ I downloaded the Ubuntu server ISO to my USB stick and wiped the drive. The setu
 **First commands:**
 
 ```console
-# root
+# root # this is a comment
 ```
 
 ```shell
