@@ -24,6 +24,7 @@ I downloaded the Ubuntu server ISO to my USB stick and wiped the drive. The setu
 **First commands:**
 
 ```shell
+\# test as root
 # First I update the system
 $ sudo apt update && sudo apt full-upgrade
 $ sudo reboot now
