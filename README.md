@@ -79,7 +79,7 @@ passwd: password updated successfully
 ***I decided to create a simple cronjob just because***
 <p align="center"><img alt="Cron" src="images/2Crontab.png" height="auto" width="800"></p>
 
-[Back to Top](https://github.com/HunterCartier702/Ubuntu-Server-HomeLab/blob/main/README.md)
+[Back to Top](https://github.com/HunterCartier702/Ubuntu-Server-HomeLab/blob/main/README.md#intro)
 
 ***Now time to install services. Ubuntu starts services when they're installed, so after editing the config files I usually just run "sudo systemctl restart/reload \<service\>"***
 
@@ -163,7 +163,7 @@ nfs_share.txt
 ```
 <p align="center"><img alt="NFS" src="images/5NFS_Share.png" height="auto" width="900"></p>
 
-[Back to Top](https://github.com/HunterCartier702/Ubuntu-Server-HomeLab/blob/main/README.md)
+[Back to Top](https://github.com/HunterCartier702/Ubuntu-Server-HomeLab/blob/main/README.md#intro)
 
 ## <a name="maria"></a>Installing MariaDB
 I also setup MariaDB although I don't do much with it. It was still fun. 
@@ -371,7 +371,7 @@ $ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 # edit jail.local
 ```
 
-[Back to Top](https://github.com/HunterCartier702/Ubuntu-Server-HomeLab/blob/main/README.md)
+[Back to Top](https://github.com/HunterCartier702/Ubuntu-Server-HomeLab/blob/main/README.md#intro)
 
 ## <a name="summary"></a>Summary
 
