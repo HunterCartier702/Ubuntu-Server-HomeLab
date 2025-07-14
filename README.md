@@ -210,7 +210,7 @@ For this I bought a $20 256GB NVMe M.2 PCIe 2280 SSD all for the sole purpose of
 
 <p align="center"><img alt="motherboard" src="images/9SSD.jpeg" height="auto" width="700"></p>
 
-***Creating a GPT partition:***
+***Creating a GPT partition table:***
 
 ```shell
 # Listing block devices:
